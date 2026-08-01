@@ -2,16 +2,99 @@
 <html>
 <link rel="stylesheet"
   href="https://fonts.googleapis.com/css?family=Germania+One|Roboto:400,700&display=swap">
-  <body style="background-color:rgb(194, 210, 238); font-family: 'Germania One', cursive; text-align: center;">
-    
-  <h1 style="margin: 4px; padding: 4px; text-shadow: 4px 4px 4px #aaa;">Hello, and welcome, to the greatest of the greats.</h1>
+  <body style="background: radial-gradient(#649173, #DBD5A4) no-repeat; background-size: cover; font-family: 'Germania One', cursive; text-align: center; min-height: 100vh; margin: 0; background-image: url(https://media3.giphy.com/media/v1.Y2lkPTZjMDliOTUyNDFicWx0NmM1ZHBwdzY2bWVrMzRpb3Uxa29rOHR1d3YxcGE5NTE5MyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/XEdgJpPEZPDqI2HVm3/source.gif)">
+   <script>
+            function updateTime() {
+            var currentTime = new Date().toLocaleString();
+            var timeText = document.querySelector("#timeElement");
+        timeText.innerHTML = currentTime;
+    }
+    setInterval(updateTime, 1000);
+    function getMoonPhase() {
+  const now = new Date();
+  
+  // Known reference New Moon date (January 6, 2000)
+  const refNewMoon = new Date(2000, 0, 6, 18, 14, 0); 
+  
+  // Average length of a lunar month in milliseconds
+  const LUNAR_CYCLE = 29.530588853 * 24 * 60 * 60 * 1000; 
+
+  // Calculate elapsed time and find the current position in the cycle
+  const msElapsed = now.getTime() - refNewMoon.getTime();
+  const cyclePosition = (msElapsed % LUNAR_CYCLE) / LUNAR_CYCLE;
+  
+  // Transform percentage (0.0 - 1.0) into days (0 - 29.53)
+  const lunarAge = cyclePosition * 29.530588853;
+
+  // Map the lunar age to the corresponding phase and emoji
+  if (lunarAge < 1.845)  return { name: "New Moon", emoji: "🌑" };
+  if (lunarAge < 5.536)  return { name: "Waxing Crescent", emoji: "🌒" };
+  if (lunarAge < 9.228)  return { name: "First Quarter", emoji: "🌓" };
+  if (lunarAge < 12.919) return { name: "Waxing Gibbous", emoji: "🌔" };
+  if (lunarAge < 16.611) return { name: "Full Moon", emoji: "🌕" };
+  if (lunarAge < 20.302) return { name: "Waning Gibbous", emoji: "🌖" };
+  if (lunarAge < 23.994) return { name: "Last Quarter", emoji: "🌗" };
+  if (lunarAge < 27.685) return { name: "Waning Crescent", emoji: "🌘" };
+  return { name: "New Moon", emoji: "🌑" };
+}
+        </script>
+    <div style="border: 1rem solid #e6dc87; padding: 1rem; border-radius: 26px; position: absolute ; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: rgba(255, 255, 255, 0.8); box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);" id="window">
+      <p style="cursor: pointer" id="welcomeclose">❌</p>
+      <p id="windowheader"> 
+		Hold me to drag! 🖐️
+	</p>  
+      <h1 style="margin: 4px; padding: 4px; text-shadow: 4px 4px 4px #aaa;">Hello, and welcome, to the greatest of the greats.</h1>
   <h2 style="text-shadow: 4px 4px 4px #aaa;">Please, enjoy your stay!</h2>
   <p style="text-shadow: 2px 2px 2px #aaa;">Yooo NASA look at this beauty of a OS you just wanna hire me now don't you.</p>
- <p style="text-shadow: 2px 2px 2px #aaa;"> Look, even the astrounauts love it.</p> 
+ <p style="text-shadow: 2px 2px 2px #aaa;"> Look, even the astrounauts love it.⬇️</p> 
       
-  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTd3kkodHUmC4UGGwjpgpBtWW-jMP6pJZmUnwfZDAH0PYD9J1j1p-PaCEw5&s=10" >
-<a href="https://open.spotify.com/album/3kEtdS2pH6hKcMU9Wioob1?si=f45df9a0b6c1414c/" style="text-align: center; text-shadow: 2px 2px 2px #aaa;">Greatest Album to ever bless mankind right here btw.</b></a>  
-</body>
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTd3kkodHUmC4UGGwjpgpBtWW-jMP6pJZmUnwfZDAH0PYD9J1j1p-PaCEw5&s=10" alt="NASA" style="width: 50%; height: auto; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); margin: 20px auto; display: block;">
+<a href="https://open.spotify.com/album/3kEtdS2pH6hKcMU9Wioob1?si=f45df9a0b6c1414c/" style="text-align: center; text-shadow: 2px 2px 2px #aaa;">Greatest Album to ever bless mankind right here btw.</a>  
+</div>
+<div id="desktopApps" >
+  <div style="display: inline-block; text-align: center;  ">
+    <img src="https://www.freeiconspng.com/uploads/notepad-icon-15.png" alt="NoteCentral" style="width: 64px; height: 64px;">
+    <p>NoteCentral</p>
+  </div>
+ <script src="script.js"></script>
 
 
+
+    </div>
+
+    
+    <div style="display: flex; justify-content:space-around; font-size: 1.5rem;  margin-top: 16px; background-color:rgba(253, 252, 252, 0.5)"> 
+      <p style="cursor: pointer" id="welcomeopen">Enable Tuff OS</p>
+
+      <p>
+        <span id="timeElement"></span>
+      </p>
+      <p> Current Moon Phase:
+        <span id="moonPhase"></span>
+        <script>
+          function updateMoonPhase() {
+            const phase = getMoonPhase();
+            document.getElementById("moonPhase").textContent = `${phase.emoji} ${phase.name}`;
+          }
+          setInterval(updateMoonPhase, 1000);
+          updateMoonPhase(); 
+        </script>
+      </p>
+      <div class="window" id="welcome" style="top: calc(50% - 90px); left: calc(50% - 180px); ">
+    <div class="windowheader" id="welcomeheader">
+    ...
+    </div>
+    
+  </div>
+
+    
+    <script src="script.js"></script>
+
+  </body>
+    <div class="closebutton" id="welcomeclose"></div>
+     
 </html>
+<head>
+  <script type="module" src="./script.js"></script>
+  <link rel="stylesheet" type="text/css" href="style.css" />
+</head>
